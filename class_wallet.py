@@ -19,8 +19,8 @@ class Wallet:
         with open('pythonwallettest.csv','w') as open_csv:
             writer = csv.writer(open_csv)
             writer.writerow(header)
-            for currency in self.balance:
-                writer.writerows(currency)
+            for item in self.balance.items():  # `item` here is a tuple
+                writer.writerow(item)  # so we can just write it as a row
 
 
 
@@ -30,6 +30,7 @@ class Wallet:
 
 my_wallet = Wallet('my wallet')
 my_wallet.deposit(100,'GBP')
+my_wallet.deposit(20,'EUR')  # Just so we have more than 1 currency
 my_wallet.spend(45,'GBP')
 print(my_wallet.show_balance('GBP'))
 
