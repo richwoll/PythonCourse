@@ -21,10 +21,16 @@ class Wallet:
             writer.writerow(header)
             for item in self.balance.items():  # `item` here is a tuple
                 writer.writerow(item)  # so we can just write it as a row
+    def load_from_csv(self,filename:str):
+        with open('pythonwallettest.csv','r') as read_csv:
+            reader = csv.reader(read_csv)
+            header = next(reader)
+            rows = []
+            for row in reader:
+                rows.append(row)
+                self.balance = dict(rows)
 
 
-
-    #def load_from_csv(self,'pythonwallettest.csv':str):
 
 
 
@@ -62,3 +68,5 @@ class Character_child(Character):
     pass
 
 print(my_wallet.export_to_csv('pythonwallettest.csv'))
+print(my_wallet.load_from_csv('pythonwallettest.csv'))
+print(my_wallet.balance)
